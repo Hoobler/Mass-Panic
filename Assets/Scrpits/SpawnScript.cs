@@ -24,13 +24,6 @@ public class SpawnScript : MonoBehaviour {
 	}
 
 	void SpawnAsteroid(){
-		Debug.Log ("Asteroid Spawned");
-		//Camera.main.Sc
-
-		//var limitMin:Vector3 = Camera.main.ScreenToWorldPoint(Vector3(0, 0, Camera.main.transform.position.y));
-		//var limitMax:Vector3 = Camera.main.ScreenToWorldPoint(Vector3(Screen.width, Screen.height, Camera.main.transform.position.y));
-
-
 		float x = Random.Range(0, Screen.width);
 		float y = Screen.height;
 		Vector3 tempVector = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 10));

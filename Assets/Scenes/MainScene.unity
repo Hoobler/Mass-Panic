@@ -124,7 +124,9 @@ GameObject:
   - 4: {fileID: 246994147}
   - 212: {fileID: 246994146}
   - 58: {fileID: 246994148}
-  m_Layer: 0
+  - 50: {fileID: 246994149}
+  - 114: {fileID: 246994150}
+  m_Layer: 9
   m_Name: Earth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,9 +175,35 @@ CircleCollider2D:
   m_GameObject: {fileID: 246994145}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Radius: 1.38999999
+  m_IsTrigger: 1
+  m_Radius: 1.35000002
   m_Center: {x: 0, y: 0}
+--- !u!50 &246994149
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 246994145}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+--- !u!114 &246994150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 246994145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45fc5cdab5cae3c4ab33896c43e7c2f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &262697638
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,4 +17,8 @@ public class AsteroidScript : MonoBehaviour {
 		//Debug.Log ("Asteroid Death!");
 		Destroy (gameObject);
 	}
+
+	public void AddForce(Vector2 force){
+		transform.rigidbody2D.AddForce (force);
+	}
 }

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class GamePlayScript : MonoBehaviour {
 
+	private GameObject asteroid;
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -16,11 +18,17 @@ public class GamePlayScript : MonoBehaviour {
 				RaycastHit2D hit;
 				if (hit = Physics2D.Raycast (touchPos, Vector2.zero, 10,1 << LayerMask.NameToLayer("TouchLayer"))) {
 					if(hit.collider.transform.parent.gameObject.tag == "Asteroid"){
-						Debug.Log("Destroy");
-						hit.collider.transform.parent.gameObject.GetComponent<AsteroidScript>().Destroy();
+
+						asteroid = hit.collider.transform.parent.gameObject;
+//						Debug.Log("Destroy");
+//						hit.collider.transform.parent.gameObject.GetComponent<AsteroidScript>().Destroy();
 					}
 					Debug.Log("Ray hit!!");
 				}
+			}
+			if (touch.phase == TouchPhase.Moved){
+				Vector2 touchDelta = Input.GetTouch(0).deltaPosition / Time.deltaTime;
+				asteroid.GetComponent<AsteroidScript>().AddForce(touchDelta);
 			}
 		}
 
@@ -36,8 +44,8 @@ public class GamePlayScript : MonoBehaviour {
 
 				Debug.Log("Name: " + hit.collider.transform.parent.gameObject);
 				if(hit.collider.transform.parent.gameObject.tag == "Asteroid"){
-					Debug.Log("Destroy");
-					hit.collider.transform.parent.gameObject.GetComponent<AsteroidScript>().Destroy();
+//					Debug.Log("Destroy");
+//					hit.collider.transform.parent.gameObject.GetComponent<AsteroidScript>().Destroy();
 				}
 				Debug.Log("Ray hit : " + hit.collider.gameObject.name);
 			}

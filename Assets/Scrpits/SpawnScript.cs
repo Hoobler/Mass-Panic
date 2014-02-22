@@ -28,7 +28,7 @@ public class SpawnScript : MonoBehaviour {
 		float y = Screen.height;
 		Vector3 tempVector = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 10));
 		tempVector.y += 5;
-		Debug.Log ("Astroid Z " + tempVector.z + "");
+		//Debug.Log ("Astroid Z " + tempVector.z + "");
 
 		Instantiate (asteroidTest, tempVector, Quaternion.identity);
 	}

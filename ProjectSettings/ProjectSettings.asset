@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  AndroidProfiler: 0
+  AndroidProfiler: 1
   defaultScreenOrientation: 0
   targetDevice: 2
   targetGlesGraphics: 1
@@ -73,7 +73,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  iPhoneBundleIdentifier: com.Company.ProductName
+  iPhoneBundleIdentifier: se.hoobler.masspanic
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   productGUID: 4f13240c6caf62440b5b8d29110dc667

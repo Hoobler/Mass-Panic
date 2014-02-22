@@ -14,7 +14,7 @@ public class AsteroidScript : MonoBehaviour {
 	}
 
 	public void Destroy(){
-		Debug.Log ("Asteroid Death!");
+		//Debug.Log ("Asteroid Death!");
 		Destroy (gameObject);
 	}
 }

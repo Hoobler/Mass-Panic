@@ -24,7 +24,7 @@ public class GamePlayScript : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetMouseButton(0))
+		if(Input.GetMouseButtonDown(0))
 		{
 			Debug.Log( "Raycasting now !" );
 			

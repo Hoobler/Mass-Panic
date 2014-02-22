@@ -3,10 +3,14 @@ using System.Collections;
 
 public class GamePlayScript : MonoBehaviour {
 
+	private int _score = 0;
+
 	private GameObject asteroid;
+	private GUIText scoreGUI;
 
 	// Use this for initialization
 	void Start () {
+		scoreGUI = GameObject.Find ("GUIScore").guiText;
 	}
 	
 	// Update is called once per frame
@@ -50,5 +54,15 @@ public class GamePlayScript : MonoBehaviour {
 				Debug.Log("Ray hit : " + hit.collider.gameObject.name);
 			}
 		}
+
+		UpdateScore ();
+	}
+
+	public void AddScore(int score){
+		_score += score;
+	}
+
+	private void UpdateScore(){
+		scoreGUI.text = _score.ToString ();
 	}
 }

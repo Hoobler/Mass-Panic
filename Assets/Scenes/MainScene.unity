@@ -168,7 +168,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AsteroidLargeSpawnTime: 2
-  asteroidTest: {fileID: 400000, guid: c08dcdb720745c24283268072b6163ae, type: 2}
+  LargeAsteroid:
+    Asteroid: {fileID: 0}
+    MediumAsteroids: 2
+    SmallAsteroids: 4
+  MediumAsteroid:
+    Asteroid: {fileID: 0}
+    MediumAsteroids: 1
+    SmallAsteroids: 3
+  SmallAsteroid:
+    Asteroid: {fileID: 400000, guid: c08dcdb720745c24283268072b6163ae, type: 2}
 --- !u!4 &220977257
 Transform:
   m_ObjectHideFlags: 0

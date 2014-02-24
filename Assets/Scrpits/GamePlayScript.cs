@@ -4,54 +4,64 @@ using System.Collections;
 public class GamePlayScript : MonoBehaviour {
 
 	private int _score = 0;
-
-	private GameObject asteroid;
-	private GUIText scoreGUI;
+	private GameObject _asteroid;
+	private GUIText _scoreGUI;
+	private int _currTouch;
+	private RaycastHit2D _hit;
 
 	// Use this for initialization
 	void Start () {
-		scoreGUI = GameObject.Find ("GUIScore").guiText;
+		_scoreGUI = GameObject.Find ("GUIScore").guiText;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		foreach (Touch touch in Input.touches) {
-			if (touch.phase == TouchPhase.Began) {
-				// Construct a ray from the current touch coordinates
-				Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-				RaycastHit2D hit;
-				if (hit = Physics2D.Raycast (touchPos, Vector2.zero, 10,1 << LayerMask.NameToLayer("TouchLayer"))) {
-					if(hit.collider.transform.parent.gameObject.tag == "Asteroid"){
-
-						asteroid = hit.collider.transform.parent.gameObject;
-//						Debug.Log("Destroy");
-//						hit.collider.transform.parent.gameObject.GetComponent<AsteroidScript>().Destroy();
-					}
-					Debug.Log("Ray hit!!");
-				}
-			}
-			if (touch.phase == TouchPhase.Moved){
-				Vector2 touchDelta = Input.GetTouch(0).deltaPosition / Time.deltaTime;
-				asteroid.GetComponent<AsteroidScript>().AddForce(touchDelta);
-			}
+		
+		if(Input.touches.Length <= 0){
+			//No touches this update;
 		}
+		else{
+			//if there where touches continue this update loop!
+			//Loop throu all the touches in this update hurr
+			for(int i = 0; i < Input.touchCount; i++){
+				//Construct a ray from the current touch
+				Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
 
-		if(Input.GetMouseButtonDown(0))
-		{
-			Debug.Log( "Raycasting now !" );
-			
-			Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			RaycastHit2D hit;
-			
-			if(hit = Physics2D.Raycast(mousePos, Vector2.zero, 10, 1 << LayerMask.NameToLayer("TouchLayer"))) // added distance of Mathf.Infinity
-			{
-
-				Debug.Log("Name: " + hit.collider.transform.parent.gameObject);
-				if(hit.collider.transform.parent.gameObject.tag == "Asteroid"){
-//					Debug.Log("Destroy");
-//					hit.collider.transform.parent.gameObject.GetComponent<AsteroidScript>().Destroy();
+				if(_hit = Physics2D.Raycast (touchPos, Vector2.zero, 10,1 << LayerMask.NameToLayer("TouchLayer"))){
+					Debug.Log("Ray hit! gameObject: " + _hit.collider.gameObject.transform.parent.gameObject);
+					if (Input.GetTouch(i).phase == TouchPhase.Began) {
+						if(_hit.collider.transform.parent.gameObject.tag == "Asteroid"){
+							_asteroid = _hit.collider.transform.parent.gameObject;
+		//					Debug.Log("Destroy");
+		//					hit.collider.transform.parent.gameObject.GetComponent<AsteroidScript>().Destroy();
+						}
+					}
+					if (Input.GetTouch(i).phase == TouchPhase.Moved){
+						Vector2 touchDelta = Input.GetTouch(0).deltaPosition / Time.deltaTime;
+						if(_asteroid != null){
+						_asteroid.GetComponent<AsteroidScript>().AddForce(touchDelta);
+						}
+					}
 				}
-				Debug.Log("Ray hit : " + hit.collider.gameObject.name);
+			}
+	
+			if(Input.GetMouseButtonDown(0))
+			{
+				Debug.Log( "Raycasting now !" );
+				
+				Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				RaycastHit2D hit;
+				
+				if(hit = Physics2D.Raycast(mousePos, Vector2.zero, 10, 1 << LayerMask.NameToLayer("TouchLayer"))) // added distance of Mathf.Infinity
+				{
+	
+					Debug.Log("Name: " + hit.collider.transform.parent.gameObject);
+					if(hit.collider.transform.parent.gameObject.tag == "Asteroid"){
+	//					Debug.Log("Destroy");
+	//					hit.collider.transform.parent.gameObject.GetComponent<AsteroidScript>().Destroy();
+					}
+					Debug.Log("Ray hit : " + hit.collider.gameObject.name);
+				}
 			}
 		}
 
@@ -63,6 +73,6 @@ public class GamePlayScript : MonoBehaviour {
 	}
 
 	private void UpdateScore(){
-		scoreGUI.text = _score.ToString ();
+		_scoreGUI.text = _score.ToString ();
 	}
 }

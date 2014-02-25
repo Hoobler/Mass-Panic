@@ -26,12 +26,12 @@ public class GamePlayScript : MonoBehaviour {
 			for(int i = 0; i < Input.touchCount; i++){
 				//Construct a ray from the current touch
 				Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
-
-				if(_hit = Physics2D.Raycast (touchPos, Vector2.zero, 10,1 << LayerMask.NameToLayer("TouchLayer"))){
-					Debug.Log("Ray hit! gameObject: " + _hit.collider.gameObject.transform.parent.gameObject);
+				Debug.Log(touchPos);
+				if(_hit = Physics2D.Raycast (touchPos, Vector2.zero, 10,1 << LayerMask.NameToLayer("MainLayer"))){
+					Debug.Log("Ray hit! gameObject: " + _hit.collider.gameObject);
 					if (Input.GetTouch(i).phase == TouchPhase.Began) {
-						if(_hit.collider.transform.parent.gameObject.tag == "Asteroid"){
-							_asteroid = _hit.collider.transform.parent.gameObject;
+						if(_hit.collider.gameObject.tag == "Asteroid"){
+							_asteroid = _hit.collider.gameObject;
 		//					Debug.Log("Destroy");
 		//					hit.collider.transform.parent.gameObject.GetComponent<AsteroidScript>().Destroy();
 						}
@@ -44,24 +44,23 @@ public class GamePlayScript : MonoBehaviour {
 					}
 				}
 			}
-	
-			if(Input.GetMouseButtonDown(0))
+		}
+		if(Input.GetMouseButtonDown(0))
+		{
+			Debug.Log( "Raycasting now !" );
+			
+			Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			RaycastHit2D hit;
+			
+			if(hit = Physics2D.Raycast(mousePos, Vector2.zero, 10, 1 << LayerMask.NameToLayer("MainLayer"))) // added distance of Mathf.Infinity
 			{
-				Debug.Log( "Raycasting now !" );
 				
-				Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				RaycastHit2D hit;
-				
-				if(hit = Physics2D.Raycast(mousePos, Vector2.zero, 10, 1 << LayerMask.NameToLayer("TouchLayer"))) // added distance of Mathf.Infinity
-				{
-	
-					Debug.Log("Name: " + hit.collider.transform.parent.gameObject);
-					if(hit.collider.transform.parent.gameObject.tag == "Asteroid"){
-	//					Debug.Log("Destroy");
-	//					hit.collider.transform.parent.gameObject.GetComponent<AsteroidScript>().Destroy();
-					}
-					Debug.Log("Ray hit : " + hit.collider.gameObject.name);
+				Debug.Log("Name: " + hit.collider.gameObject);
+				if(hit.collider.gameObject.tag == "Asteroid"){
+					//					Debug.Log("Destroy");
+					//					hit.collider.transform.parent.gameObject.GetComponent<AsteroidScript>().Destroy();
 				}
+				Debug.Log("Ray hit : " + hit.collider.gameObject.name);
 			}
 		}
 

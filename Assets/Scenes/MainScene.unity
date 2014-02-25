@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AsteroidLargeSpawnTime: 2
+  AsteroidMediumSpawnTime: 10
+  AsteroidSmallSpawnTime: 2
   LargeAsteroid:
     Asteroid: {fileID: 0}
     MediumAsteroids: 2

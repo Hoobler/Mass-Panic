@@ -1,7 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum AsteroidType{
+	Small, Medium, Large
+}
+
 public class AsteroidScript : MonoBehaviour {
+	
+	public AsteroidType asteroidType;
+	
+	public void OnDeath(){
+		if(asteroidType == AsteroidType.Large){
+			
+		}
+		if(asteroidType == AsteroidType.Medium){
+			
+		}
+	}
 
 	public void Destroy(){
 		//Debug.Log ("Asteroid Death!");

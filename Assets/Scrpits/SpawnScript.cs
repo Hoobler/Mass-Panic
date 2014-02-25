@@ -22,24 +22,30 @@ public class SmallAsteroid{
 
 public class SpawnScript : MonoBehaviour {
 
-	public float AsteroidLargeSpawnTime = 1f;
+	public float AsteroidLargeSpawnTime = 20f;
+	public float AsteroidMediumSpawnTime = 10f;
+	public float AsteroidSmallSpawnTime = 2f;
 	public LargeAsteroid LargeAsteroid;
 	public MediumAsteroid MediumAsteroid;
 	public SmallAsteroid SmallAsteroid;
 
 
 	private float largeSpawnTime;
+	private float mediumSpawnTime;
+	private float smallSpawnTime;
 	private int _asteroidCounter;
 	private float _y;
 	// Use this for initialization
 	void Start () {
 		largeSpawnTime = AsteroidLargeSpawnTime;
+		mediumSpawnTime = AsteroidMediumSpawnTime;
+		smallSpawnTime = AsteroidSmallSpawnTime;
 		_y = Screen.height;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (largeSpawnTime <= 0) {
+		if (smallSpawnTime <= 0) {
 			_asteroidCounter++;
 			SpawnAsteroid();
 			largeSpawnTime = AsteroidLargeSpawnTime;

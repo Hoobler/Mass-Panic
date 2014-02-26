@@ -11,7 +11,8 @@ public class AsteroidScript : MonoBehaviour {
 	
 	public void OnDeath(){
 		if(asteroidType == AsteroidType.Large){
-			
+			OnDeathEventArgs myDeath = new OnDeathEventArgs("Shit faced", gameObject.transform);
+			EventManager.TriggerOnDeath(myDeath);
 		}
 		if(asteroidType == AsteroidType.Medium){
 			

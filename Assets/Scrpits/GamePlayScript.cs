@@ -8,7 +8,6 @@ public class GamePlayScript : MonoBehaviour {
 	private GUIText _scoreGUI;
 	private int _currTouch;
 	private RaycastHit2D _hit;
-
 	// Use this for initialization
 	void Start () {
 		_scoreGUI = GameObject.Find ("GUIScore").guiText;
@@ -16,6 +15,10 @@ public class GamePlayScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
+		OnDeathEventArgs myDeath = new OnDeathEventArgs("Fuck face", gameObject.transform);
+		
+		EventManager.TriggerOnDeath(myDeath);
 		
 		if(Input.touches.Length <= 0){
 			//No touches this update;

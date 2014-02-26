@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 [System.Serializable]
 public class LargeAsteroid{
@@ -37,6 +38,8 @@ public class SpawnScript : MonoBehaviour {
 	private float _y;
 	// Use this for initialization
 	void Start () {
+		AsteroidScript[] asteroids = FindObjectsOfType<AsteroidScript>();
+		EventManager.OnDeath += TestSkit;
 		largeSpawnTime = AsteroidLargeSpawnTime;
 		mediumSpawnTime = AsteroidMediumSpawnTime;
 		smallSpawnTime = AsteroidSmallSpawnTime;
@@ -54,7 +57,7 @@ public class SpawnScript : MonoBehaviour {
 	}
 
 	void SpawnAsteroid(){
-		float x = Random.Range(0, Screen.width);
+		float x = UnityEngine.Random.Range(0, Screen.width);
 		Vector3 tempVector = Camera.main.ScreenToWorldPoint(new Vector3(x, _y, 10));
 		tempVector.y += 5;
 		//Debug.Log ("Astroid Z " + tempVector.z + "");
@@ -62,4 +65,10 @@ public class SpawnScript : MonoBehaviour {
 		SmallAsteroid.Asteroid.name = "AsteroidNr" + _asteroidCounter;
 		Instantiate (SmallAsteroid.Asteroid, tempVector, Quaternion.identity);
 	}
+	
+	void TestSkit(OnDeathEventArgs args){
+		Debug.Log("Derp: " + args.type);
+		Debug.Log("transform: " + args.transform.position);
+	}
+	
 }

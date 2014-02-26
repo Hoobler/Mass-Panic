@@ -11,6 +11,7 @@ public class GamePlayScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		_scoreGUI = GameObject.Find ("GUIScore").guiText;
+		EventManager.AddScore += AddScore;
 	}
 	
 	// Update is called once per frame
